@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 
 describe('Robot', () => {
   it('should return the right orientation & position', () => { 
-    const grid = new app.Grid(3, 3)
+    const grid = new app.Grid(2, 2)
     const robot = new app.Robot(0,0, 'N', grid)
     expect(robot.orientation).to.equal(0)
     expect(robot.orientationChar()).to.equal('N')
@@ -11,7 +11,7 @@ describe('Robot', () => {
   });
 
   it('should turn left / right', () => { 
-    const grid = new app.Grid(3, 3)
+    const grid = new app.Grid(2, 2)
     const robot = new app.Robot(0,0, 'N', grid)
     expect(robot.orientation).to.equal(0)
     expect(robot.orientationChar()).to.equal('N')
@@ -42,7 +42,7 @@ describe('Robot', () => {
   });
 
   it('should move forward', () => { 
-    const grid = new app.Grid(3, 3)
+    const grid = new app.Grid(2, 2)
     const robot = new app.Robot(0,0, 'N', grid)
     expect(robot.position).to.eql(new app.Point(0,0))
     expect(robot.orientation).to.equal(0)
@@ -68,6 +68,16 @@ describe('Robot', () => {
     expect(robot.position).to.eql(new app.Point(2,2))
     robot.moveForward();
     expect(robot.position).to.eql(new app.Point(2,2))
+  });
+});
+
+describe('Simulation', () => {
+  it('should take input and give output', () => {
+    const simulation = new app.Simulation();
+    const out = simulation.parseFile();
+    expect(out[0]).to.equal('1 3 N');
+    expect(out[1]).to.equal('5 1 E');
+    expect(out.length).to.equal(2);
   });
 });
 
