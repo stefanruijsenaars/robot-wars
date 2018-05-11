@@ -72,12 +72,14 @@ describe('Robot', () => {
 });
 
 describe('Simulation', () => {
-  it('should take input and give output', () => {
+  it('should take input and give output', (done) => {
     const simulation = new app.Simulation();
-    const out = simulation.parseFile();
-    expect(out[0]).to.equal('1 3 N');
-    expect(out[1]).to.equal('5 1 E');
-    expect(out.length).to.equal(2);
+    simulation.parseFile((out) => {
+      expect(out[0]).to.equal('1 3 N');
+      expect(out[1]).to.equal('5 1 E');
+      expect(out.length).to.equal(2);
+      done();
+    });
   });
 });
 
